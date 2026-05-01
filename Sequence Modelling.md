@@ -13,7 +13,7 @@ Sequence Models
 Introduction to Deep Learning
 
 4 Lectures · 50 min each · Week 5
-LEC TUR E 1    ·   MODULE       5
+LEC TUR E 1    ·   MODULE       5
 
 
 
@@ -30,7 +30,7 @@ Seq2Seq Tasks & Word Embeddings
                                                                 1
 •   Negative sampling (SGNS) and the noise distribution
 •   Vector space geometry and semantic analogies
-                                                                                                                           L1 · NLP & Embeddings
+                                                                                                                           L1 · NLP & Embeddings
 NLP: Task Landscape
 
        Sentiment                 Machine                                     Language                 Question
@@ -61,7 +61,7 @@ Seq → Label                Seq → Seq              Seq → Seq            Seq
    •      Order matters: 'dog bites man' ≠ 'man bites dog'
                                                                          •      We need to process tokens one at a time, maintaining
                                                                                 state
-                                                                                                      L1 · NLP & Embeddings
+                                                                                                      L1 · NLP & Embeddings
 From One-Hot Vectors to Dense Embeddings
 
 One-Hot Encoding
@@ -88,7 +88,7 @@ Dense Embeddings                                               0
       vectors
  •    One-hot × E = lookup of row w in E
  •    Parameters: |V|×d (e.g. 50K × 300 = 15M)
-                                                                                                                       L1 · NLP & Embeddings
+                                                                                                                       L1 · NLP & Embeddings
 Word2Vec: Skip-gram Architecture
 
                                                                  Skip-gram: one centre word → C context words
@@ -116,7 +116,7 @@ After training
  •     W is kept as word embeddings; W' is discarded
  •     Some implementations average W and W' (double
        embeddings)
-                                                                                                                               L1 · NLP & Embeddings
+                                                                                                                               L1 · NLP & Embeddings
  Skip-gram: Probability Model & Derivation
 
 Deriving P(context | centre):
@@ -147,7 +147,7 @@ Deriving P(context | centre):
 
 
  Gradient = −(true context vector) + (expected context vector under current model). Push vᶜ toward ṽₒ, away from all others.
-                                                                                                                   L1 · NLP & Embeddings
+                                                                                                                   L1 · NLP & Embeddings
 Negative Sampling (SGNS)
 
                                                                   Noise distribution:
@@ -174,7 +174,7 @@ SGNS Objective:
                                                                    Dot products            |V| ≈ 50K            k+1 ≤ 21
                                                                    W' rows updated         All |V|              k+1 only
                                                                    Speedup                 —                    ~2,500×
-                                                                                                      L1 · NLP & Embeddings
+                                                                                                      L1 · NLP & Embeddings
 Word Vectors: Geometric Properties
 
                                                                  Vector space (2D projection):
@@ -202,7 +202,7 @@ Cosine Similarity:
    •     Polysemy: 'bank' has one vector for multiple meanings
    •     Static: same vector regardless of context
    •     Fix: contextualised embeddings (BERT, GPT) — Module 6
-LEC TUR E 2    ·   MODULE 5
+LEC TUR E 2    ·   MODULE 5
 
 
 
@@ -219,7 +219,7 @@ RNNs & Backprop Through Time
                                                              2
 •   Vanishing & exploding gradients: mathematical analysis
 •   Gradient clipping
-                                                                                                                   L2 · RNNs & BPTT
+                                                                                                                   L2 · RNNs & BPTT
  Recurrent Neural Network: Core Architecture
 
 The Recurrence Equations:
@@ -246,7 +246,7 @@ The Recurrence Equations:
    •     h₀ = 0 (zero vector, or learned parameter)
    •     First hidden state has no history — computed from x₁
          only
-                                                                                       L2 · RNNs & BPTT
+                                                                                       L2 · RNNs & BPTT
  RNN Forward Pass: Full Equations
 
 Complete forward pass for x₁, x₂, …, xT:
@@ -277,7 +277,7 @@ Complete forward pass for x₁, x₂, …, xT:
 
 
  yₜ is the ground-truth index. Total loss: L = (1/T) Σₜ Lₜ (average over timesteps).
-                                                                            L2 · RNNs & BPTT
+                                                                            L2 · RNNs & BPTT
  Backpropagation Through Time (BPTT): Derivation
 
 Goal: compute ∂L/∂Wₕₕ where L = Σₜ Lₜ and hₜ depends on Wₕₕ at every step
@@ -308,7 +308,7 @@ Goal: compute ∂L/∂Wₕₕ where L = Σₜ Lₜ and hₜ depends on Wₕₕ a
 
 
  Wₕₕ is shared across time so gradients from ALL steps are SUMMED.
-                                                                                                                  L2 · RNNs & BPTT
+                                                                                                                  L2 · RNNs & BPTT
  Vanishing & Exploding Gradients
 
 Key quantity: gradient of hₜ w.r.t. hₜ₋ₖ (k steps back)
@@ -331,7 +331,7 @@ Key quantity: gradient of hₜ w.r.t. hₜ₋ₖ (k steps back)
          exponentially                                               steps
    •     Fix: gradient clipping — preserve direction, cap      •     Fix: LSTM/GRU gates control information flow → Lecture
          magnitude                                                   3
-LEC TUR E 3     ·   MODULE        5
+LEC TUR E 3     ·   MODULE        5
 
 
 
@@ -348,7 +348,7 @@ Gated Units: LSTMs & GRUs
                                                              3
 •   GRU: reset gate, update gate — 4 equations
 •   LSTM vs GRU comparison
-                                                                                                                         L3 · LSTMs & GRUs
+                                                                                                                         L3 · LSTMs & GRUs
 LSTM: Motivation & the Gradient Highway
 
                                                                 RNN vs LSTM gradient path:
@@ -376,7 +376,7 @@ Key gradient identity:                                            Why Addition F
                                                                     •         If fₜ ≈ 1 over many steps: gradient magnitude ≈ 1^k = 1
                                                                     •         No repeated matrix multiplication → no exponential
 If fₜ ≈ 1: gradient × 1 at every step — no decay!                             decay
-                                                                                                                                                       L3 · LSTMs & GRUs
+                                                                                                                                                       L3 · LSTMs & GRUs
  LSTM: All 6 Equations
 
 Inputs: xₜ ∈ ℝᵈ, hₜ₋₁ ∈ ℝᴴ, cₜ₋₁ ∈ ℝᴴ
@@ -405,7 +405,7 @@ Inputs: xₜ ∈ ℝᵈ, hₜ₋₁ ∈ ℝᴴ, cₜ₋₁ ∈ ℝᴴ
 
 
   Even if cell state carries important info, network can choose not to expose it.    Passed to next layer and next timestep. tanh squashes c ₜ values to (−1,1).
-                                                                                                                                                             L3 · LSTMs & GRUs
+                                                                                                                                                             L3 · LSTMs & GRUs
  GRU: Gated Recurrent Unit
 
  GRU Motivation (Cho et al., 2014)
@@ -431,12 +431,12 @@ GRU Equations — all 4 steps:
 
 
  Reset gate rₜ filters hₜ₋₁ before computing candidate. If rₜ=0, hₜ̃ depends only on xₜ.   zₜ=0: copy old state. z ₜ=1: fully replace with candidate. No separate cell state.
-LEC TUR E 4    ·   MODULE 5
+LEC TUR E 4    ·   MODULE 5
 
 
 
 
-Seq2Seq & Attention Mechanisms
+## Seq2Seq & Attention Mechanisms
 
 
 •
@@ -448,7 +448,7 @@ Seq2Seq & Attention Mechanisms
                                                       4
 •   Luong (multiplicative) attention
 •   Scaled dot-product attention
-                                                                                                        L4 · Seq2Seq & Attention
+                                                                                                        L4 · Seq2Seq & Attention
 Seq2Seq: Encoder-Decoder Architecture
 
                                                                   Encoder-Decoder diagram:
@@ -469,7 +469,7 @@ Encoder:
   bottleneck!
 
 Decoder:
-                                                                                                       L4 · Seq2Seq & Attention
+                                                                                                       L4 · Seq2Seq & Attention
  Bahdanau Attention: Full Derivation
 
 Given: encoder states h₁ᵉ,…,hTₓᵉ and decoder state at step t: sₜ₋₁
@@ -500,7 +500,7 @@ Given: encoder states h₁ᵉ,…,hTₓᵉ and decoder state at step t: sₜ₋�
 
 
  cₜ concatenated with previous token y ₜ₋₁ as decoder input. Direct access to relevant source parts.
-                                                                                                                                    L4 · Seq2Seq & Attention
+                                                                                                                                    L4 · Seq2Seq & Attention
  Scaled Dot-Product Attention & Score Function Comparison
 
 Vaswani et al. (2017) — Attention Is All You Need:
@@ -526,7 +526,7 @@ divide by √dₖ keeps variance ≈ 1
 
                                                                                  One question, many answers
 Every encoder state hⱼᵉ gets gradient from ALL decoder steps (weighted by αₜⱼ)     All score functions ask: how similar is this query to this key?
-                                                                                                                      Summary
+                                                                                                                      Summary
 Module 5 Summary
 
 L1 — Embeddings                                                 L3 — LSTMs & GRUs
@@ -543,14 +543,16 @@ L2 — RNNs & BPTT
  •    hₜ = tanh(Wₕₕhₜ₋₁+Wₓₕxₜ+bₕ); shared weights across time
  •    ∂L/∂Wₕₕ = Σₜ δzₜhₜ₋₁ᵀ; (λ·γ)^k → 0 for vanishing           •    Encoder-decoder with fixed context c = hTₓᵉ
                                                                  •    Bahdanau: eₜⱼ=vₐᵀtanh(Wₐsₜ₋₁+Uₐhⱼ); cₜ=Σαₜⱼhⱼ
-BPTT: Deriving the Recurrence and the Weight Gradients
+BPTT: 
+
+## Deriving the Recurrence and the Weight Gradients
                  From ∂L/∂ht to ∂L/∂Whh
 
 
 
 
                                                          1 / 11
-Setup: what we want to compute
+Setup: what we want to compute
 For a vanilla RNN,
                                                                        T
                                                                        X
@@ -573,7 +575,7 @@ weight gradient becomes simple.
                                           =   δt ht−1
                                      ∂Whh
                                                t=1                                        2 / 11
-Step 1: which losses depend on ht ?
+Step 1: which losses depend on ht ?
 
 The hidden state ht affects:
      Lt directly,
@@ -591,7 +593,7 @@ Therefore
                                ∂ht   ∂ht   ∂ht
 Key idea: the derivative is a sum because ht influences the loss through multiple branches.
                                                                                               3 / 11
-Step 2: derive the recurrence for ∂L/∂ht
+Step 2: derive the recurrence for ∂L/∂ht
 
 All future losses depend on ht only through ht+1 . So by the chain rule,
 
@@ -610,7 +612,7 @@ Interpretation:
 
 
                                                                                     4 / 11
-Step 3: expand the local transition Jacobian
+Step 3: expand the local transition Jacobian
 From
                     at+1 = Wxh xt+1 + Whh ht + b,    ht+1 = ϕ(at+1 ),
                                   ∂ht+1    ∂ht+1 ∂at+1
@@ -622,7 +624,7 @@ Now
                               ∂ht                   ∂at+1
 where
                           Dt+1 = diag ϕ′ (at+1,1 ), . . . , ϕ′ (at+1,n ) .
-                                                                        
+                                                                        
 
 So
                                       ∂ht+1
@@ -633,7 +635,7 @@ Thus the state-gradient recurrence becomes
                                     =      +       Dt+1 Whh .
                                 ∂ht    ∂ht   ∂ht+1
                                                                              5 / 11
-Step 4: define δt and get the standard BPTT recursion
+Step 4: define δt and get the standard BPTT recursion
 Define the pre-activation error
                                                      ∂L
                                              δt :=       .
@@ -651,13 +653,13 @@ So
                                           =     + Whh  δt+1 .
                                       ∂ht   ∂ht
 Multiplying elementwise by ϕ′ (at ) gives
-                                                     
+                                                     
                                         ∂Lt
                                δt =         + Whh δt+1 ⊙ ϕ′ (at )
                                                 ⊤
                                         ∂ht
                                                                     6 / 11
-Step 5: now derive the gradient with respect to Whh
+Step 5: now derive the gradient with respect to Whh
 Since the same recurrent matrix is used at every time step,
                                               T
                                      ∂L    X ∂L ∂at
@@ -683,7 +685,7 @@ we get the local derivative
                               ∂Wxh                      ∂b
                                       t=1                      t=1
                                                                      7 / 11
-3-step unrolled RNN: direct expansion of ∂L/∂Whh
+3-step unrolled RNN: direct expansion of ∂L/∂Whh
 
 Let L = L1 + L2 + L3 . Since Whh is used at all three steps,
                            ∂L    ∂L ∂a1    ∂L ∂a2   ∂L ∂a3
@@ -703,31 +705,31 @@ Because at = Whh ht−1 + · · · ,
 
 So the remaining task is: compute δ1 , δ2 , δ3 efficiently.
                                                                      8 / 11
-3-step example: backward recursion for δ3 , δ2 , δ1
+3-step example: backward recursion for δ3 , δ2 , δ1
 At the final step,
                                             ∂L3
                                           δ3 =  ⊙ ϕ′ (a3 ).
                                             ∂h3
 At time 2, a2 affects both L2 and the future through a3 :
-                                                   
+                                                   
                                        ∂L2
                                δ2 =        + Whh δ3 ⊙ ϕ′ (a2 ).
                                                  ⊤
                                        ∂h2
 At time 1, the whole future is summarized by δ2 :
-                                                  
+                                                  
                                        ∂L1
                                 δ1 =       + Whh δ2 ⊙ ϕ′ (a1 ).
                                                 ⊤
                                        ∂h1
 So in general,
-                                                          
+                                                          
                                           ∂Lt    ⊤
                                δt =           + Whh δt+1       ⊙ ϕ′ (at )
                                           ∂ht
 This recurrence compresses all future paths into a single backward signal.
                                                                              9 / 11
-Why the recurrence matters
+Why the recurrence matters
 Without the recurrence, the derivative at early time steps explodes into many explicit future
 paths:
 
@@ -747,14 +749,14 @@ paths:
                                                             ⊤δ
 The backward recursion summarizes these paths compactly in Whh t+1 .
                                                                                             10 / 11
-Takeaway
+Takeaway
 
  1   First derive the state-gradient recurrence:
                                      ∂L    ∂Lt    ∂L ∂ht+1
                                          =     +           .
                                      ∂ht   ∂ht   ∂ht+1 ∂ht
  2   Convert it to the standard pre-activation recursion:
-                                                         
+                                                         
                                          ∂Lt
                                  δt =        + Whh δt+1 ⊙ ϕ′ (at ).
                                                    ⊤
@@ -770,4 +772,3 @@ The backward recursion summarizes these paths compactly in Whh t+1 .
 
 
                                                                       11 / 11
-
